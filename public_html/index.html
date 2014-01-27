@@ -8,31 +8,27 @@
     <body>
         
         <script>
+            d3.json("mydata.json",function(data){
             var canvas = d3.select("body")
                     .append("svg")
                     .attr("width",500)
-                    .attr("height",500)
-            var circle = canvas.append("circle")
-                    .attr("cx",50)
-                    .attr("cy",50)
-                    .attr("r",25)
-                    .attr("fill","orange")
-            circle.transition()
-                    .duration(4500)
-                    .delay(2000)
-                    .attr("cx",150)
-                    .attr("cy",150)
-                    .attr("r",60)
-                    .attr("fill","#C3E577")
-                    .transition()        
-                    .attr("cx",50)
-                    .attr("cy",50)
-                    .attr("r",75)
-                    .attr("fill","#F5E436")
-                    .each("end", function(){d3.select(this).attr("fill","#84CBBD")})
+                    .attr("height",500);
+            canvas.selectAll("rect").data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("width",function(d){return d.age*10})
+                    .attr("height",50)
+                    .attr("y",function (d,i){return i*52})
+                    .attr("fill","blue");
+            canvas.selectAll("text").data(data)
+                    .enter()
+                    .append("text")
+                    .attr("fill","red")
+                    .attr("y",function (d,i){return i*52+24})
+                    .text(function(d){return d.name;})
             
             
-            
+            });
         </script>
     
 
