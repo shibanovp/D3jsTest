@@ -10,13 +10,11 @@
         <script>
             var canvas = d3.select("body")
                     .append("svg")
-                    .attr("width",500)
+                    .attr("width",1000)
                     .attr("height",500);
-            var data = [
-                {"x":10,"y":20},
-                {"x":40,"y":60},
-                {"x":50,"y":70}  
-            ];
+            var data = [];
+            for (var x=0; x<44.3;x+=0.1)
+                data.push({"x":x*20,"y":Math.sin(x)*20});
             var group = canvas.append("g")
                     .attr("transform","translate(100,100)");
             var line = d3.svg.line()
@@ -27,8 +25,8 @@
                     .enter()
                     .append("path")
                     .attr("d", line)
-                    .attr("fill","none")
-                    .attr("stroke","#000")
+                    .attr("fill","red")
+                    .attr("stroke","green")
                     .attr("stroke-width",10)
             
         </script>
