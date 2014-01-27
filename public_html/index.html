@@ -8,31 +8,30 @@
     <body>
         
         <script>
-            var data = [10];
             var canvas = d3.select("body")
                     .append("svg")
                     .attr("width",500)
                     .attr("height",500)
-            var circle1 = canvas.append("circle")
-                    .attr("cx",50)
-                    .attr("cy",100)
-                    .attr("r",25)
-            var circle2 = canvas.append("circle")
-                    .attr("cx",50)
-                    .attr("cy",150)
-                    .attr("r",25)
-            var circles = canvas.selectAll("circle")
-                    .data(data)
-                    .attr("fill","red")
-                    .exit()
-                    .attr("fill","blue")
-                    /*.enter()
-                    .append("circle")
+            var circle = canvas.append("circle")
                     .attr("cx",50)
                     .attr("cy",50)
                     .attr("r",25)
-                    .attr("fill","green")
-            */
+                    .attr("fill","orange")
+            circle.transition()
+                    .duration(4500)
+                    .delay(2000)
+                    .attr("cx",150)
+                    .attr("cy",150)
+                    .attr("r",60)
+                    .attr("fill","#C3E577")
+                    .transition()        
+                    .attr("cx",50)
+                    .attr("cy",50)
+                    .attr("r",75)
+                    .attr("fill","#F5E436")
+                    .each("end", function(){d3.select(this).attr("fill","#84CBBD")})
+            
+            
             
         </script>
     
