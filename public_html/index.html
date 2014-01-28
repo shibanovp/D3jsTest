@@ -3,32 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <title>D3jsTest</title>
-        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="d3.js"></script>
     </head>
     <body>
         
         <script>
+            var data = [3,2,1,5]
+            var r = 300;
+            var color = d3.scale.ordinal()
+                    .range(["red","blue","orange"]);
             var canvas = d3.select("body")
                     .append("svg")
-                    .attr("width",1000)
-                    .attr("height",500);
-            var data = [];
-            for (var x=0; x<44.3;x+=0.1)
-                data.push({"x":x*20,"y":Math.sin(x)*20});
+                    .attr("width",1500)
+                    .attr("height",1500);
             var group = canvas.append("g")
-                    .attr("transform","translate(100,100)");
-            var line = d3.svg.line()
-                    .x(function(d){return d.x})
-                    .y(function(d){return d.y})
-            group.selectAll("path")
-                    .data([data])
+                    .attr("transform","translate(300,300)");
+            var arc = d3.svg.arc()
+                    .innerRadius(200)
+                    .outerRadius(r)
+            var pie = d3.layout.pie()
+                    .value(function(d){return d})
+            var arcs = group.selectAll(".arc")
+                    .data(pie(data))
                     .enter()
-                    .append("path")
-                    .attr("d", line)
-                    .attr("fill","red")
-                    .attr("stroke","green")
-                    .attr("stroke-width",10)
-            
+                    .append("g")
+                    .attr("class","arc");
+            arcs.append("path")
+                    .attr("d", arc)
+                    .attr("fill", function (d){return color(d.data)})
+            arcs.append("text")
+                    .attr("transform",function (d){return "translate("+arc.centroid(d)+")"})
+                    .attr("text-anchor","middle")
+                    .attr("font-size","3em")
+                    .text(function (d){return d.data})
         </script>
     
 
