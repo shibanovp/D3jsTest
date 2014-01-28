@@ -19,7 +19,7 @@
             var group = canvas.append("g")
                     .attr("transform","translate(300,300)");
             var arc = d3.svg.arc()
-                    .innerRadius(200)
+                    .innerRadius(0)
                     .outerRadius(r)
             var pie = d3.layout.pie()
                     .value(function(d){return d})
