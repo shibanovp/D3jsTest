@@ -24,13 +24,14 @@
                         .enter()
                         .append("g")
                         .attr("class","node")
-                        .attr("transform", function(d){return "translate("+d.x+","+d.y+")"});
+                        .attr("transform", function(d){return "translate("+d.y+","+d.x+")"});
                 node.append("circle")
                         .attr("r",5)
                         .attr("fill","steelblue")
                 node.append("text")
                         .text(function(d){return d.name;})
-                var diagonal = d3.svg.diagonal();
+                var diagonal = d3.svg.diagonal()
+                        .projection(function (d){ return [ d.y, d.x]});
                 canvas.selectAll(".link")
                         .data(links)
                         .enter()
