@@ -1,5 +1,23 @@
-[
-    {"name": "Paul","age":30},
-    {"name": "Fred","age":50},
-    {"name": "Francis","age":12}
-]
+
+    {
+        "name":"Max",
+        "children":[
+            
+            {
+                "name":"Silvia",
+                "children":[
+                    {"name":"Craig"},
+                    {"name":"Robin"},
+                    {"name":"Anna"}
+        ]
+            },
+            {
+                "name":"David",
+                "children":[
+                    {"name":"Jeff","size":3534},
+                    {"name":"Buffy","size":5731}
+        ]
+            }
+            ]
+    }   
+
